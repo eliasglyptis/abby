@@ -32,11 +32,7 @@ export default function MainContent({ packages }) {
   return (
     <main className="container mx-auto mt-10 flex">
       <SidebarFilters packages={filteredPackages} onPriceChange={handlePriceChange} />
-      <PackagesGrid 
-        packages={filteredPackages}
-        onFilter={filterByMealPlan}
-        onSort={sortPackages}
-      />
+      <PackagesGrid packages={filteredPackages} onPriceChange={handlePriceChange} />
     </main>
   );
 }

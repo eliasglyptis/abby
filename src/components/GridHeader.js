@@ -19,6 +19,7 @@ export default function GridHeader({ packages, onPriceChange }) {
 
   return (
     <>
+      {/* Main header content */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center h-auto gap-4 mb-6 overflow-hidden px-4">
         <div className="text-16-bold font-roboto text-black">
           139 διαθέσιμα πακέτα διακοπών
@@ -31,14 +32,16 @@ export default function GridHeader({ packages, onPriceChange }) {
               value={selectedOption}
               onChange={handleDropdownChange}
             >
-              <option value="Δημοφιλή">Filters by price</option>
-              <option value="Destination">Another filter</option>
+              <option value="Δημοφιλή">Price descending</option>
+              <option value="Destination">Price Ascending</option>
+              <option value="Destination">Must include meal plan</option>
             </select>
             <i className="material-icons absolute right-4 top-3 text-field-text-14 text-black pointer-events-none">
               expand_more
             </i>
           </div>
 
+          {/* Filter button */}
           <button
             onClick={openModal}
             className="md:hidden flex-shrink-0 w-auto h-[48px] py-[16px] px-[16px] flex items-center justify-center text-accent-green border border-accent-green rounded-lg overflow-hidden"
@@ -49,10 +52,11 @@ export default function GridHeader({ packages, onPriceChange }) {
         </div>
       </div>
 
+      {/* Modal for mobile filters */}
       {isModalOpen && (
         <MobileFilters
           packages={packages}
-          onPriceChange={onPriceChange}
+          onPriceChange={onPriceChange}  // Make sure this prop is passed correctly
           closeModal={closeModal}
         />
       )}
