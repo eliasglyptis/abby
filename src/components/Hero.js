@@ -5,7 +5,7 @@ import SearchSection from "./SearchSection";
 
 export default function Hero() {
   return (
-    <div className="w-full max-w-[1920px] h-auto flex flex-col items-center px-8 gap-4"> 
+    <div className="w-full max-w-[1920px] h-auto flex flex-col items-center px-4 gap-4"> 
       <div className="w-full max-w-[1096px] flex justify-center">
         <Breadcrumbs />
       </div>

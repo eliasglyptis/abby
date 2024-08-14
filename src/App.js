@@ -19,7 +19,7 @@ export default function App() {
   }, []);
 
   return (
-    <div className="bg-background text-black font-roboto">
+    <div className="bg-white text-black font-roboto">
       <Hero />
       <MainContent packages={packages} />
     </div>

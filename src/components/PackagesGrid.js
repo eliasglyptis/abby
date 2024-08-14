@@ -6,10 +6,10 @@ export default function PackagesGrid({ packages }) {
   console.log("Packages in grid:", packages);
 
   return (
-    <section className="w-full max-w-[984px] h-auto mx-auto flex flex-col gap-[24px]">
+    <section className="w-full lg:max-w-[984px] h-auto mx-auto flex flex-col gap-[24px]">
       <GridHeader />
       {packages.length > 0 ? (
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 md:px-0">
           {packages.map((pkg, index) => (
             <PackageCard
               key={index}

@@ -26,7 +26,7 @@ export default function SidebarFilters({ packages, onPriceChange }) {
   };
 
   return (
-    <aside className="w-[312px] bg-white p-4 shadow-md rounded-lg mr-2 mt-[90px]">
+    <aside className="w-[312px] bg-white p-4 shadow-md rounded-lg mr-2 mt-[90px] hidden lg:block">
       <h2 className="text-h5 font-bold mb-4">Φίλτρα</h2>
 
       <div className="mb-6">
