@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import ReactSlider from "react-slider";
 
 export default function SidebarFilters({ packages, onPriceChange }) {
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(500);
   const [selectedRange, setSelectedRange] = useState('');
-  const [priceDistribution, setPriceDistribution] = useState([]);
 
   const priceRanges = [
     { label: 'Έως 50 €', value: '0-50', min: 0, max: 50 },
     { label: '50 - 150 €', value: '50-150', min: 50, max: 150 },
     { label: '150 - 500 €', value: '150-500', min: 150, max: 500 }
   ];
-
-  useEffect(() => {
-    if (packages.length > 0) {
-      const maxPriceValue = Math.max(...packages.map(pkg => pkg.price));
-      const interval = maxPriceValue / 10;
-
-      const distribution = new Array(10).fill(0);
-      packages.forEach(pkg => {
-        const index = Math.min(Math.floor(pkg.price / interval), 9);
-        distribution[index] += 1;
-      });
-
-      setPriceDistribution(distribution); 
-    }
-  }, [packages]); 
 
   const handlePriceChange = (min, max) => {
     setMinPrice(min);
@@ -40,8 +24,6 @@ export default function SidebarFilters({ packages, onPriceChange }) {
     setMaxPrice(range.max);
     onPriceChange(range.min, range.max);
   };
-
-  const maxCount = Math.max(...priceDistribution);
 
   return (
     <aside className="w-[312px] bg-white p-4 shadow-md rounded-lg mr-2 mt-[90px]">
@@ -77,18 +59,6 @@ export default function SidebarFilters({ packages, onPriceChange }) {
               className="w-full h-[40px] p-[12px] bg-translucent-bg border border-field-border rounded-lg focus:outline-none"
             />
           </div>
-        </div>
-        <div className="relative top-[22px] right-[16px] flex justify-between mt-4 w-full items-baseline h-[100px]">
-          {priceDistribution.map((count, index) => (
-            <div
-              key={index}
-              className="bg-blue-500 opacity-50"
-              style={{
-                height: `${Math.max((count / maxCount) * 100, 2)}%`, 
-                width: `${184 / priceDistribution.length}px` 
-              }}
-            />
-          ))}
         </div>
 
         <div className="flex items-center w-full h-[48px] px-[2px] gap-[2px]">

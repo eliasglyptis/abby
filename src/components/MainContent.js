@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SidebarFilters from './SidebarFilters';
-import Results from './Results';
+import PackagesGrid from './PackagesGrid';
 
 export default function MainContent({ packages }) {
   const [filteredPackages, setFilteredPackages] = useState(packages);
@@ -32,7 +32,7 @@ export default function MainContent({ packages }) {
   return (
     <main className="container mx-auto mt-10 flex">
       <SidebarFilters packages={filteredPackages} onPriceChange={handlePriceChange} />
-      <Results 
+      <PackagesGrid 
         packages={filteredPackages}
         onFilter={filterByMealPlan}
         onSort={sortPackages}
