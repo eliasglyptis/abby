@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import MobileFilters from "./mobile/MobileFilters";
 
-export default function GridHeader({ packages, onPriceChange }) {
-  const [selectedOption, setSelectedOption] = useState("Δημοφιλή");
+export default function GridHeader({ packages, onDropdownChange, onPriceChange }) {
+  const [selectedOption, setSelectedOption] = useState("Price descending");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDropdownChange = (event) => {
-    setSelectedOption(event.target.value);
+    const selectedValue = event.target.value;
+    setSelectedOption(selectedValue);
+    if (onDropdownChange) {
+      onDropdownChange(selectedValue); 
+    }
   };
 
   const openModal = () => {
@@ -19,7 +23,6 @@ export default function GridHeader({ packages, onPriceChange }) {
 
   return (
     <>
-      {/* Main header content */}
       <div className="w-full flex flex-col md:flex-row justify-between items-center h-auto gap-4 mb-6 overflow-hidden px-4">
         <div className="text-16-bold font-roboto text-black">
           139 διαθέσιμα πακέτα διακοπών
@@ -30,18 +33,17 @@ export default function GridHeader({ packages, onPriceChange }) {
             <select
               className="w-full h-[42px] bg-translucent-bg border border-field-border rounded-lg px-4 py-2 text-field-text-14 font-roboto text-black appearance-none cursor-pointer overflow-ellipsis"
               value={selectedOption}
-              onChange={handleDropdownChange}
+              onChange={handleDropdownChange} 
             >
-              <option value="Δημοφιλή">Price descending</option>
-              <option value="Destination">Price Ascending</option>
-              <option value="Destination">Must include meal plan</option>
+              <option value="Price descending">Price descending</option>
+              <option value="Price Ascending">Price Ascending</option>
+              <option value="Must include meal plan">Must include meal plan</option>
             </select>
             <i className="material-icons absolute right-4 top-3 text-field-text-14 text-black pointer-events-none">
               expand_more
             </i>
           </div>
 
-          {/* Filter button */}
           <button
             onClick={openModal}
             className="md:hidden flex-shrink-0 w-auto h-[48px] py-[16px] px-[16px] flex items-center justify-center text-accent-green border border-accent-green rounded-lg overflow-hidden"
@@ -52,11 +54,10 @@ export default function GridHeader({ packages, onPriceChange }) {
         </div>
       </div>
 
-      {/* Modal for mobile filters */}
       {isModalOpen && (
         <MobileFilters
           packages={packages}
-          onPriceChange={onPriceChange}  // Make sure this prop is passed correctly
+          onPriceChange={onPriceChange}  
           closeModal={closeModal}
         />
       )}
